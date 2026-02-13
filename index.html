@@ -75,6 +75,17 @@ input{
   font-size:18px;
 }
 
+.forever-counter{
+  margin-top: 30px;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.6;
+  background: rgba(255,255,255,0.15);
+  padding: 15px 20px;
+  border-radius: 15px;
+  display: inline-block;
+}
+
 </style>
 </head>
 <body>
@@ -210,7 +221,7 @@ You are my home.
 Forever yours,
 bubbaa❤️
 </p>
-<p id="foreverCounter"></p>
+<p id="foreverCounter" class="forever-counter"></p>
 <button onclick="finalSurprise()">Click here, Bubu ❤️</button>
 <p id="lastLine"></p>
 </section>
@@ -279,13 +290,13 @@ function finalSurprise(){
   alert("I will love you in every lifetime. ❤️ – Tumhara SHREY");
 }
 
-let start=new Date("2024-02-24"); // CHANGE to your real date
+let start=new Date("2025-02-24"); // CHANGE to your real date
 
 setInterval(()=>{
   let now=new Date();
   let days=Math.floor((now-start)/(1000*60*60*24));
   document.getElementById("foreverCounter").innerHTML=
-  "I have loved you for "+days+" days, and I will love you forever. ❤️";
+  "I have loved you for <br><span style='font-size:32px;font-weight:bold'>"+days+" days</span><br>and I will love you forever. ❤️";
 },1000);
 
 let msg="Thank you for existing in my life, Bubu.";
