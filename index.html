@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,580 +8,168 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
-
 body{
-    background:linear-gradient(135deg,#ff758c,#ff7eb3);
-    color:white;
-    text-align:center;
-    overflow:hidden;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  color:white;
+  text-align:center;
+  overflow:hidden;
 }
-
 section{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:25px;
-    transition:all 0.8s ease;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:25px;
+  transition:0.6s;
 }
+.hidden{display:none;}
 
-.hidden{
-    opacity:0;
-    pointer-events:none;
-    position:absolute;
-}
-
-h1{font-size:2.2rem;margin-bottom:10px}
+h1{font-size:2rem;margin-bottom:10px}
 h2{font-weight:300;margin-bottom:15px}
 
 button{
-    padding:12px 28px;
-    border:none;
-    border-radius:30px;
-    font-size:16px;
-    cursor:pointer;
-    background:white;
-    color:#ff4b6e;
-    margin:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
-    transition:0.3s;
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  background:white;
+  color:#ff4b6e;
+  margin:10px;
 }
-
-button:hover{transform:scale(1.08)}
 
 input{
-    padding:12px;
-    border:none;
-    border-radius:20px;
-    margin-top:10px;
-    text-align:center;
-    font-size:16px;
+  padding:10px;
+  border:none;
+  border-radius:20px;
+  text-align:center;
+  margin-top:10px;
 }
 
-.typing{
-    font-size:18px;
-    max-width:500px;
-    min-height:120px;
-}
-
-.gallery img{
-    width:85%;
-    max-width:320px;
-    border-radius:20px;
-    margin:10px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
-}
-
-.reason-card{
-    background:rgba(255,255,255,0.15);
-    padding:15px;
-    margin:8px;
-    border-radius:15px;
-    max-width:300px;
+img{
+  width:85%;
+  max-width:300px;
+  border-radius:20px;
+  margin:10px;
 }
 
 .heart{
-    position:fixed;
-    font-size:20px;
-    pointer-events:none;
+  position:fixed;
+  font-size:20px;
+  pointer-events:none;
 }
-
-.music-btn{
-    position:fixed;
-    top:10px;
-    right:10px;
-    background:white;
-    color:#ff4b6e;
-    border-radius:50%;
-    width:45px;
-    height:45px;
-    font-size:18px;
-}
-
-.countdown{font-size:20px;margin-top:15px}
-
 </style>
 </head>
 <body>
 
 <audio id="music" loop>
-<source src="song.mp3" type="audio/mp3">
+  <source src="song.mp3" type="audio/mp3">
 </audio>
-
-<button class="music-btn" onclick="toggleMusic()">🎵</button>
 
 <!-- PASSWORD PAGE -->
 <section id="passwordPage">
-<h1>Private Website 🔒</h1>
-<h2>Only Bubu can enter 😌</h2>
-<p style="margin-bottom:10px;font-size:18px">What is the first thing I gifted you? 💕</p>
-<input type="password" id="passwordInput" placeholder="Enter your answer">
-<button onclick="checkPassword()">Enter ❤️</button>
-<p id="wrong" style="margin-top:10px;color:#fff;font-size:16px"></p>
+  <h1>Private Website 🔒</h1>
+  <h2>Only Bubu can enter 😌</h2>
+  <p>What is the first thing I gifted you? 💕</p>
+  <input type="password" id="passwordInput" placeholder="Enter answer">
+  <button onclick="checkPassword()">Enter ❤️</button>
+  <p id="wrong"></p>
 </section>
 
-<!-- MAIN SITE -->
-<!-- CINEMATIC WELCOME PAGE -->
+<!-- WELCOME -->
 <section id="welcomePage" class="hidden">
-<h1 id="welcomeText" style="opacity:0">Welcome, My Bubu ❤️</h1>
-<h2 id="welcomeSub" style="opacity:0">This world is only for you 😌</h2>
+  <h1>Welcome My Bubu ❤️</h1>
 </section>
 
-<section id="page1" class="hidden">
-<h1>Hi Kavita ❤️</h1>
-<h2>My cutest Bubu 😌</h2>
-<button onclick="nextPage('page1','page2');startMusic();startHearts()">Start</button>
+<!-- MAIN -->
+<section id="mainPage" class="hidden">
+  <h1>Hi Kavita ❤️</h1>
+  <h2>My cutest Bubu 😌</h2>
+  <button onclick="showProposal()">Continue</button>
 </section>
 
-<section id="page2" class="hidden">
-<h1>I made something for you 💌</h1>
-<div class="typing" id="typing"></div>
-<button onclick="nextPage('page2','page3')">Continue ❤️</button>
+<!-- PROPOSAL -->
+<section id="proposalPage" class="hidden">
+  <h1>Will you be my Valentine? ❤️</h1>
+  <button onclick="yesClicked()">YES 💖</button>
+  <button id="noBtn">No 🙈</button>
 </section>
 
-<section id="page3" class="hidden">
-<h1>Reasons I Love You 💕</h1>
-<div class="reason-card">Your smile makes everything better</div>
-<div class="reason-card">You are my peace</div>
-<div class="reason-card">You are my favorite notification</div>
-<div class="reason-card">You are cute even when angry 😜</div>
-<div class="reason-card">You are my forever ❤️</div>
-<button onclick="nextPage('page3','page4')">Our Memories 📸</button>
-</section>
-
-<section id="page4" class="hidden">
-<h1>Our Beautiful Memories</h1>
-<img src="photo1.jpg">
-<img src="photo2.jpg">
-<img src="photo3.jpg">
-<button onclick="nextPage('page4','page5')">Final Question 😌</button>
-</section>
-
-<section id="page5" class="hidden">
-<h1>Bubu...</h1>
-<h2>Will you be my Valentine? ❤️</h2>
-<button onclick="yesClicked()">YES 💖</button>
-<button id="noBtn">No 🙈</button>
-</section>
-
-<section id="page6" class="hidden">
-<h1>I LOVE YOU ❤️</h1>
-<h2>You are mine forever 😌</h2>
-<div class="countdown" id="counter"></div>
-<button onclick="whatsappMessage()">Send me proof 😄</button>
-<button onclick="showFinalMessage()">One Last Message 💌</button>
-</section>
-
-<!-- FINAL EMOTIONAL MESSAGE -->
-<section id="finalMessage" class="hidden">
-<h1 style="font-size:28px">My Dearest Bubu ❤️</h1>
-<p style="max-width:600px;margin-top:20px;font-size:18px;line-height:1.8">
-No matter how many kilometers are between us,
-no matter how many days we spend apart,
-
-one thing will never change...
-
-My love for you.
-
-You are not just my girlfriend.
-You are my best friend,
-my peace,
-my motivation,
-and the most beautiful part of my life.
-
-One day, this distance will end.
-And I will finally hold you without counting days.
-
-Until then,
-I choose you.
-Every single day.
-
-Forever yours,
-Shreyansh ❤️
-</p>
+<!-- FINAL -->
+<section id="finalPage" class="hidden">
+  <h1>I LOVE YOU ❤️</h1>
+  <p>
+  No matter the distance,  
+  I choose you.  
+  Every single day.  
+  Forever.  
+  – Shreyansh ❤️
+  </p>
 </section>
 
 <script>
 
-// CHANGE THIS PASSWORD
-let correctPassword = "jhumke";
+let correctPassword="jhumke";
 
 function checkPassword(){
-let input=document.getElementById("passwordInput").value.toLowerCase().trim();
-let wrong=document.getElementById("wrong");
+  let input=document.getElementById("passwordInput").value.toLowerCase().trim();
+  let wrong=document.getElementById("wrong");
 
-if(input===correctPassword){
+  if(input===correctPassword){
+    document.getElementById("passwordPage").classList.add("hidden");
+    document.getElementById("welcomePage").classList.remove("hidden");
+    document.getElementById("music").play();
 
-// romantic unlock animation
-wrong.innerHTML="";
-let unlock=document.createElement("div");
-unlock.innerHTML="❤️ Unlocking Bubu's World ❤️";
-unlock.style.fontSize="24px";
-unlock.style.marginTop="20px";
-unlock.style.animation="fadeIn 1s ease";
-document.getElementById("passwordPage").appendChild(unlock);
+    setTimeout(()=>{
+      document.getElementById("welcomePage").classList.add("hidden");
+      document.getElementById("mainPage").classList.remove("hidden");
+    },2000);
 
-setTimeout(()=>{
-nextPage('passwordPage','welcomePage');
-cinematicReveal();
-},1500);
-
-}else{
-
-// funny teasing messages
-let messages=[
-"Wrong answer 😜 Someone forgot already?",
-"Aisa kaise bhool gayi Bubu 😒",
-"Hint: You wore them and looked cute ❤️",
-"Shreyansh is disappointed 😭 try again",
-"Think harder Bubu 😌"
-];
-
-wrong.innerHTML=messages[Math.floor(Math.random()*messages.length)];
-}
-}else{
-document.getElementById("wrong").innerHTML="Wrong password 😒 Only Bubu knows it";
-}
+  }else{
+    wrong.innerHTML="Wrong answer 😜 Try again Bubu";
+  }
 }
 
-let music=document.getElementById("music");
-
-function toggleMusic(){
-if(music.paused) music.play();
-else music.pause();
+function showProposal(){
+  document.getElementById("mainPage").classList.add("hidden");
+  document.getElementById("proposalPage").classList.remove("hidden");
 }
 
-function cinematicReveal(){
-let text=document.getElementById("welcomeText");
-let sub=document.getElementById("welcomeSub");
-
-text.animate([
-{opacity:0,transform:"scale(0.8)"},
-{opacity:1,transform:"scale(1)"}
-],{duration:1500,fill:"forwards"});
-
-setTimeout(()=>{
-sub.animate([
-{opacity:0},
-{opacity:1}
-],{duration:1500,fill:"forwards"});
-},800);
-
-setTimeout(()=>{
-nextPage('welcomePage','page1');
-},3500);
-}
-
-function startMusic(){music.play()}
-
-function nextPage(current,next){
-document.getElementById(current).classList.add("hidden");
-document.getElementById(next).classList.remove("hidden");
-}
-
-// typing effect
-let text="Bubu, distance means nothing when someone means everything. You are my happiness, my peace, and my cutest person. I love you more than words, so I coded this for you. — Shreyansh ❤️";
-let i=0;
-function type(){
-if(i<text.length){
-document.getElementById("typing").innerHTML+=text.charAt(i);
-i++;
-setTimeout(type,40);
-}
-}
-type();
-
-// escaping no button
 let noBtn=document.getElementById("noBtn");
 noBtn.addEventListener("mouseover",()=>{
-noBtn.style.position="absolute";
-noBtn.style.top=Math.random()*80+"%";
-noBtn.style.left=Math.random()*80+"%";
+  noBtn.style.position="absolute";
+  noBtn.style.top=Math.random()*80+"%";
+  noBtn.style.left=Math.random()*80+"%";
 });
 
-// EXPLOSION ANIMATION
 function yesClicked(){
-nextPage('page5','page6');
-explosion();
+  document.getElementById("proposalPage").classList.add("hidden");
+  document.getElementById("finalPage").classList.remove("hidden");
+  explosion();
 }
 
 function explosion(){
-for(let i=0;i<100;i++){
-let heart=document.createElement("div");
-heart.innerHTML="❤️";
-heart.className="heart";
-heart.style.left="50vw";
-heart.style.top="50vh";
+  for(let i=0;i<80;i++){
+    let heart=document.createElement("div");
+    heart.innerHTML="❤️";
+    heart.className="heart";
+    heart.style.left="50vw";
+    heart.style.top="50vh";
 
-let x=(Math.random()-0.5)*600;
-let y=(Math.random()-0.5)*600;
+    let x=(Math.random()-0.5)*600;
+    let y=(Math.random()-0.5)*600;
 
-heart.animate([
-{transform:"translate(0,0)",opacity:1},
-{transform:`translate(${x}px,${y}px)`,opacity:0}
-],{
-duration:1500,
-easing:"ease-out"
-});
+    heart.animate([
+      {transform:"translate(0,0)",opacity:1},
+      {transform:`translate(${x}px,${y}px)`,opacity:0}
+    ],{duration:1500});
 
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),1500);
-}
-}
-
-// floating hearts background
-function startHearts(){
-setInterval(()=>{
-let heart=document.createElement("div");
-heart.innerHTML="❤️";
-heart.className="heart";
-heart.style.left=Math.random()*100+"vw";
-heart.style.top="100vh";
-
-heart.animate([
-{transform:"translateY(0)",opacity:1},
-{transform:"translateY(-100vh)",opacity:0}
-],{duration:6000});
-
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),6000);
-},400);
-}
-
-// LOVE COUNTER
-let startDate=new Date("2024-01-01"); // CHANGE
-
-function updateCounter(){
-let now=new Date();
-let diff=now-startDate;
-let days=Math.floor(diff/(1000*60*60*24));
-document.getElementById("counter").innerHTML=
-"Loving you for "+days+" days ❤️";
-}
-setInterval(updateCounter,1000);
-updateCounter();
-
-// WHATSAPP BUTTON
-function whatsappMessage(){
-let message="I said YES ❤️";
-let url="https://wa.me/?text="+encodeURIComponent(message);
-window.open(url,"_blank");
-}
-
-function showFinalMessage(){
-nextPage('page6','finalMessage');
-startHearts();
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),1500);
+  }
 }
 
 </script>
-
 </body>
 </html>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Bubu ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
-}
-
-body{
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    color:white;
-    text-align:center;
-    overflow-x:hidden;
-}
-
-section{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-}
-
-h1{
-    font-size:2.5rem;
-}
-
-h2{
-    margin-top:20px;
-    font-weight:300;
-}
-
-button{
-    padding:12px 25px;
-    border:none;
-    border-radius:30px;
-    margin-top:20px;
-    font-size:16px;
-    cursor:pointer;
-    background:white;
-    color:#ff4b6e;
-    transition:0.3s;
-}
-
-button:hover{
-    transform:scale(1.1);
-}
-
-.hidden{
-    display:none;
-}
-
-.gallery img{
-    width:80%;
-    max-width:300px;
-    margin:10px;
-    border-radius:20px;
-    box-shadow:0 10px 20px rgba(0,0,0,0.2);
-}
-
-.love-letter{
-    max-width:500px;
-    line-height:1.6;
-    margin-top:20px;
-}
-
-.floating-heart{
-    position:fixed;
-    font-size:20px;
-    animation:float 5s linear infinite;
-}
-
-@keyframes float{
-    0%{
-        transform:translateY(100vh);
-        opacity:1;
-    }
-    100%{
-        transform:translateY(-10vh);
-        opacity:0;
-    }
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- Background Music -->
-<audio id="bgMusic" loop>
-    <source src="song.mp3" type="audio/mp3">
-</audio>
-
-<section>
-    <h1>Hi Kavita ❤️</h1>
-    <h2>Or should I say… My Bubu 😌</h2>
-    <button onclick="startExperience()">Click Me Bubu 💕</button>
-</section>
-
-<section id="letter" class="hidden">
-    <h1>For You 💌</h1>
-    <div class="love-letter">
-        Bubu,  
-
-        I know we are far from each other,  
-        but distance means nothing when someone means everything.  
-
-        You are my cutest notification,  
-        my favorite person,  
-        my safe place.  
-
-        Thank you for being my happiness,  
-        my peace,  
-        and sometimes my little drama queen 😜  
-
-        I love you more than words…  
-        so I coded this instead ❤️  
-
-        – Yours forever,  
-        Shreyansh
-    </div>
-    <button onclick="showGallery()">See Our Memories 📸</button>
-</section>
-
-<section id="gallery" class="hidden">
-    <h1>Our Beautiful Memories 💕</h1>
-    <div class="gallery">
-        <img src="photo1.jpg">
-        <img src="photo2.jpg">
-        <img src="photo3.jpg">
-    </div>
-    <button onclick="finalQuestion()">One More Thing 😌</button>
-</section>
-
-<section id="proposal" class="hidden">
-    <h1>Bubu…</h1>
-    <h2>Will you be my Valentine? ❤️</h2>
-    <button onclick="yesLove()">YESSSS 💖</button>
-    <button id="noBtn">No 🙈</button>
-</section>
-
-<section id="yesSection" class="hidden">
-    <h1>I KNEW IT 😎❤️</h1>
-    <h2>You are stuck with me forever now 😌💕</h2>
-</section>
-
-<script>
-
-const music = document.getElementById("bgMusic");
-
-function startExperience(){
-    music.play();
-    document.querySelector("section").classList.add("hidden");
-    document.getElementById("letter").classList.remove("hidden");
-}
-
-function showGallery(){
-    document.getElementById("letter").classList.add("hidden");
-    document.getElementById("gallery").classList.remove("hidden");
-}
-
-function finalQuestion(){
-    document.getElementById("gallery").classList.add("hidden");
-    document.getElementById("proposal").classList.remove("hidden");
-}
-
-function yesLove(){
-    document.getElementById("proposal").classList.add("hidden");
-    document.getElementById("yesSection").classList.remove("hidden");
-    createHearts();
-}
-
-const noBtn = document.getElementById("noBtn");
-
-noBtn.addEventListener("mouseover", ()=>{
-    noBtn.style.position="absolute";
-    noBtn.style.top=Math.random()*80+"%";
-    noBtn.style.left=Math.random()*80+"%";
-});
-
-function createHearts(){
-    setInterval(()=>{
-        const heart=document.createElement("div");
-        heart.classList.add("floating-heart");
-        heart.innerHTML="❤️";
-        heart.style.left=Math.random()*100+"vw";
-        document.body.appendChild(heart);
-        setTimeout(()=>heart.remove(),5000);
-    },300);
-}
-
-</script>
-
-</body>
-</html>
->>>>>>> 1dee258dec6d99a59ec807c88129cb987f8446b1
