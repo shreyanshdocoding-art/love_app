@@ -185,7 +185,7 @@ So take a deep breath, and step into our world... ❤️
 
 <!-- FINAL MESSAGE -->
 <section id="final" class="hidden">
-<h1>My Dearest Bubu ❤️</h1>
+<h1>My Forever Valentine ❤️</h1>
 <p class="message">
 If someday someone asks me what the best thing in my life was,
 I will not say an achievement,
@@ -210,6 +210,9 @@ You are my home.
 Forever yours,
 bubbaa❤️
 </p>
+<p id="foreverCounter"></p>
+<button onclick="finalSurprise()">Click here, Bubu ❤️</button>
+<p id="lastLine"></p>
 </section>
 
 <script>
@@ -271,6 +274,32 @@ document.body.appendChild(heart);
 setTimeout(()=>heart.remove(),1500);
 }
 }
+function finalSurprise(){
+  explosion();
+  alert("I will love you in every lifetime. ❤️ – Tumhara SHREY");
+}
+
+let start=new Date("2024-02-24"); // CHANGE to your real date
+
+setInterval(()=>{
+  let now=new Date();
+  let days=Math.floor((now-start)/(1000*60*60*24));
+  document.getElementById("foreverCounter").innerHTML=
+  "I have loved you for "+days+" days, and I will love you forever. ❤️";
+},1000);
+
+let msg="Thank you for existing in my life, Bubu.";
+let i=0;
+
+function typeLast(){
+  if(i<msg.length){
+    document.getElementById("lastLine").innerHTML+=msg.charAt(i);
+    i++;
+    setTimeout(typeLast,50);
+  }
+}
+
+typeLast();
 
 </script>
 
