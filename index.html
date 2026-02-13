@@ -8,12 +8,14 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
+
 body{
   background:linear-gradient(135deg,#ff758c,#ff7eb3);
   color:white;
   text-align:center;
   overflow:hidden;
 }
+
 section{
   min-height:100vh;
   display:flex;
@@ -21,9 +23,9 @@ section{
   justify-content:center;
   align-items:center;
   padding:25px;
-  transition:0.6s;
 }
-.hidden{display:none;}
+
+.hidden{display:none}
 
 h1{font-size:2rem;margin-bottom:10px}
 h2{font-weight:300;margin-bottom:15px}
@@ -47,11 +49,18 @@ input{
   margin-top:10px;
 }
 
-img{
+.gallery{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.gallery img{
   width:85%;
   max-width:300px;
   border-radius:20px;
   margin:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
 .heart{
@@ -59,53 +68,148 @@ img{
   font-size:20px;
   pointer-events:none;
 }
+
+.message{
+  max-width:600px;
+  line-height:1.7;
+  font-size:18px;
+}
+
 </style>
 </head>
 <body>
 
 <audio id="music" loop>
-  <source src="song.mp3" type="audio/mp3">
+<source src="song.mp3" type="audio/mp3">
 </audio>
 
 <!-- PASSWORD PAGE -->
 <section id="passwordPage">
-  <h1>Private Website 🔒</h1>
-  <h2>Only Bubu can enter 😌</h2>
-  <p>What is the first thing I gifted you? 💕</p>
-  <input type="password" id="passwordInput" placeholder="Enter answer">
-  <button onclick="checkPassword()">Enter ❤️</button>
-  <p id="wrong"></p>
+<h1>Private Website 🔒</h1>
+<h2>Only Bubu can enter 😌</h2>
+<p>What is the first thing I gifted you? 💕</p>
+<input type="password" id="passwordInput" placeholder="Enter answer">
+<button onclick="checkPassword()">Enter ❤️</button>
+<p id="wrong"></p>
 </section>
 
-<!-- WELCOME -->
-<section id="welcomePage" class="hidden">
-  <h1>Welcome My Bubu ❤️</h1>
+<!-- START MESSAGE -->
+<section id="startMessage" class="hidden">
+<h1>Hi Bubu ❤️</h1>
+<p class="message">
+Before you go forward, I want you to know something...
+
+This is not just a website.
+This is every emotion, every memory, every heartbeat I feel for you.
+
+Every page you see next holds a piece of our story.
+
+So take a deep breath, and step into our world... ❤️
+</p>
+<button onclick="nextPage('startMessage','banaras')">Start Our Journey ✨</button>
 </section>
 
-<!-- MAIN -->
-<section id="mainPage" class="hidden">
-  <h1>Hi Kavita ❤️</h1>
-  <h2>My cutest Bubu 😌</h2>
-  <button onclick="showProposal()">Continue</button>
+<!-- BANARAS -->
+<section id="banaras" class="hidden">
+<h1>Our First Meeting – Banaras ❤️</h1>
+<div class="gallery">
+<img src="banaras1.jpg">
+<img src="banaras2.jpg">
+<img src="banaras3.jpg">
+<img src="banaras4.jpg">
+<img src="banaras5.jpg">
+<img src="banaras6.jpg">
+<img src="banaras7.jpg">
+<img src="banaras8.jpg">
+<img src="banaras9.jpg">
+</div>
+<button onclick="nextPage('banaras','agra')">Next → Agra</button>
+</section>
+
+<!-- AGRA -->
+<section id="agra" class="hidden">
+<h1>Our Agra Memories 🏛️</h1>
+<div class="gallery">
+<img src="agra1.jpg">
+<img src="agra2.jpg">
+<img src="agra3.jpg">
+<img src="agra4.jpg">
+<img src="agra5.jpg">
+<img src="agra6.jpg">
+</div>
+<button onclick="nextPage('agra','noida')">Next → Noida</button>
+</section>
+
+<!-- NOIDA -->
+<section id="noida" class="hidden">
+<h1>Moments 🌆</h1>
+<div class="gallery">
+<img src="noida1.jpg">
+<img src="noida2.jpg">
+<img src="noida3.jpg">
+<img src="noida4.jpg">
+<img src="noida5.jpg">
+</div>
+<button onclick="nextPage('noida','convocation')">Next → Convocation</button>
+</section>
+
+<!-- CONVOCATION -->
+<section id="convocation" class="hidden">
+<h1>Your Convocation 🎓</h1>
+<div class="gallery">
+<img src="convo1.jpg">
+<img src="convo2.jpg">
+<img src="convo3.jpg">
+<img src="convo4.jpg">
+</div>
+<button onclick="nextPage('convocation','shimla')">Next → Shimla</button>
+</section>
+
+<!-- SHIMLA -->
+<section id="shimla" class="hidden">
+<h1>Our First Beautiful Memorable Trip ❄️</h1>
+<div class="gallery">
+<img src="shimla1.jpg">
+<img src="shimla2.jpg">
+<img src="shimla3.jpg">
+</div>
+<button onclick="nextPage('shimla','proposal')">Final Question ❤️</button>
 </section>
 
 <!-- PROPOSAL -->
-<section id="proposalPage" class="hidden">
-  <h1>Will you be my Valentine? ❤️</h1>
-  <button onclick="yesClicked()">YES 💖</button>
-  <button id="noBtn">No 🙈</button>
+<section id="proposal" class="hidden">
+<h1>Will you be mine forever? ❤️</h1>
+<button onclick="yesClicked()">YES 💖</button>
+<button id="noBtn">No 🙈</button>
 </section>
 
-<!-- FINAL -->
-<section id="finalPage" class="hidden">
-  <h1>I LOVE YOU ❤️</h1>
-  <p>
-  No matter the distance,  
-  I choose you.  
-  Every single day.  
-  Forever.  
-  – Shreyansh ❤️
-  </p>
+<!-- FINAL MESSAGE -->
+<section id="final" class="hidden">
+<h1>My Dearest Bubu ❤️</h1>
+<p class="message">
+If someday someone asks me what the best thing in my life was,
+I will not say an achievement,
+or a moment,
+or a success.
+
+I will simply say your name.
+
+Because you didn’t just enter my life,
+you changed it.
+
+You made me believe in love that feels safe,
+pure,
+and forever.
+
+No matter where life takes us,
+no matter how far distances try,
+my heart will always find its way back to you.
+
+You are my home.
+
+Forever yours,
+bubbaa❤️
+</p>
 </section>
 
 <script>
@@ -113,63 +217,57 @@ img{
 let correctPassword="jhumke";
 
 function checkPassword(){
-  let input=document.getElementById("passwordInput").value.toLowerCase().trim();
-  let wrong=document.getElementById("wrong");
+let input=document.getElementById("passwordInput").value.toLowerCase().trim();
 
-  if(input===correctPassword){
-    document.getElementById("passwordPage").classList.add("hidden");
-    document.getElementById("welcomePage").classList.remove("hidden");
-    document.getElementById("music").play();
-
-    setTimeout(()=>{
-      document.getElementById("welcomePage").classList.add("hidden");
-      document.getElementById("mainPage").classList.remove("hidden");
-    },2000);
-
-  }else{
-    wrong.innerHTML="Wrong answer 😜 Try again Bubu";
-  }
+if(input===correctPassword){
+document.getElementById("passwordPage").classList.add("hidden");
+document.getElementById("startMessage").classList.remove("hidden");
+document.getElementById("music").play();
+}else{
+document.getElementById("wrong").innerHTML="Wrong answer 😜 Try again Bubu";
+}
 }
 
-function showProposal(){
-  document.getElementById("mainPage").classList.add("hidden");
-  document.getElementById("proposalPage").classList.remove("hidden");
+function nextPage(current,next){
+document.getElementById(current).classList.add("hidden");
+document.getElementById(next).classList.remove("hidden");
 }
 
 let noBtn=document.getElementById("noBtn");
 noBtn.addEventListener("mouseover",()=>{
-  noBtn.style.position="absolute";
-  noBtn.style.top=Math.random()*80+"%";
-  noBtn.style.left=Math.random()*80+"%";
+noBtn.style.position="absolute";
+noBtn.style.top=Math.random()*80+"%";
+noBtn.style.left=Math.random()*80+"%";
 });
 
 function yesClicked(){
-  document.getElementById("proposalPage").classList.add("hidden");
-  document.getElementById("finalPage").classList.remove("hidden");
-  explosion();
+document.getElementById("proposal").classList.add("hidden");
+document.getElementById("final").classList.remove("hidden");
+explosion();
 }
 
 function explosion(){
-  for(let i=0;i<80;i++){
-    let heart=document.createElement("div");
-    heart.innerHTML="❤️";
-    heart.className="heart";
-    heart.style.left="50vw";
-    heart.style.top="50vh";
+for(let i=0;i<80;i++){
+let heart=document.createElement("div");
+heart.innerHTML="❤️";
+heart.className="heart";
+heart.style.left="50vw";
+heart.style.top="50vh";
 
-    let x=(Math.random()-0.5)*600;
-    let y=(Math.random()-0.5)*600;
+let x=(Math.random()-0.5)*600;
+let y=(Math.random()-0.5)*600;
 
-    heart.animate([
-      {transform:"translate(0,0)",opacity:1},
-      {transform:`translate(${x}px,${y}px)`,opacity:0}
-    ],{duration:1500});
+heart.animate([
+{transform:"translate(0,0)",opacity:1},
+{transform:`translate(${x}px,${y}px)`,opacity:0}
+],{duration:1500});
 
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),1500);
-  }
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),1500);
+}
 }
 
 </script>
+
 </body>
 </html>
