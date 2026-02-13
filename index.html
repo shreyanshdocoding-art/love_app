@@ -231,6 +231,11 @@ document.getElementById("wrong").innerHTML="Wrong answer 😜 Try again Bubu";
 function nextPage(current,next){
 document.getElementById(current).classList.add("hidden");
 document.getElementById(next).classList.remove("hidden");
+  // reset scroll to top
+window.scrollTo({
+    top: 0,
+    behavior: "instant"
+  });
 }
 
 let noBtn=document.getElementById("noBtn");
